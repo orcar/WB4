@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Getting Started: Handling Form Submission</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+	<script src="https://code.jquery.com/jquery-1.12.1.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<h1>
+		<span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+		Form <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+	</h1>
+	<form action="#" th:action="@{/greeting}" th:object="${greeting}"
+		method="post">
+		<p>
+			数字: <input type="text" th:field="*{id}" />
+		</p>
+		<p>
+			<input type="submit" value="Submit" />
+		</p>
+	</form>
+
+	<p th:text="'数字: ' + ${greeting.id}" />
+	<div id="ajax_data">
+		<input type="button" id="ajax_btn" value="Ajax通信テスト" /><br />
+		出力：<span id="output_data"></span>
+	</div>
+
+	<script src="/getJson.js" th:src="@{/getJson.js}"></script>
+
+</body>
+</html>
