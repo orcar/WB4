@@ -17,35 +17,35 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
-public class GreetingController {
+public class AppController {
 
 	@Autowired
 	private HttpSession session;
 
-	@GetMapping("/greeting")
-	public String greetingForm(Model model) {
+	@GetMapping("/input")
+	public String inputForm(Model model) {
 
-		Greeting greeting = new Greeting();
+		InputNumber inputNumber = new InputNumber();
 
 		if (session.getAttribute("number") != null) {
 
-			greeting.setId((long) session.getAttribute("number"));
+			inputNumber.setNumber((long) session.getAttribute("number"));
 		}
 
-		model.addAttribute("greeting", greeting);
+		model.addAttribute("inputNumber", inputNumber);
 
-		return "greeting";
+		return "/input";
 	}
 
-	@PostMapping("/greeting")
-	public String greetingSubmit(@ModelAttribute Greeting greeting) {
-		long id = greeting.getId();
-		long id2 = id * 2;
-		greeting.setId(id2);
+	@PostMapping("/input")
+	public String formSubmit(@ModelAttribute InputNumber inputNumber) {
+		long sessionNumber = inputNumber.getNumber();
+		long sessionNumber2 = sessionNumber * 2;
+		inputNumber.setNumber(sessionNumber2);
 
-		session.setAttribute("number", id2);
+		session.setAttribute("number", sessionNumber2);
 
-		return "greeting";
+		return "/result";
 	}
 	
 	@RequestMapping(value = "Hoge", method = RequestMethod.GET)

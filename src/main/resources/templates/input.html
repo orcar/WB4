@@ -13,17 +13,17 @@
 		<span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
 		Form <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
 	</h1>
-	<form action="#" th:action="@{/greeting}" th:object="${greeting}"
+	<form action="#" th:action="@{/input}" th:object="${inputNumber}"
 		method="post">
 		<p>
-			数字: <input type="text" th:field="*{id}" />
+			数字: <input type="text" th:field="*{number}" />
 		</p>
 		<p>
 			<input type="submit" value="Submit" />
 		</p>
 	</form>
 
-	<p th:text="'数字: ' + ${greeting.id}" />
+	<p th:text="'数字: ' + ${inputNumber.number}" />
 	<div id="ajax_data">
 		<input type="button" id="ajax_btn" value="Ajax通信テスト" /><br />
 		出力：<span id="output_data"></span>
