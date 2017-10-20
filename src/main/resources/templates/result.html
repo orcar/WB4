@@ -6,7 +6,12 @@
 </head>
 <body>
 	<h1>Result</h1>
-    <p th:text="'数字: ' + ${inputNumber.number}" />
+    <p th:text="'数字: ' + ${indexForm.number}" />
+    <p th:text="'動物: ' + ${indexForm.animal}" />
+    <p th:text="'国名: ' + ${indexForm.nation}" />
+    <p th:text="'データ受取日時: ' + ${indexForm.receivedtime}" />
+    <p th:text="'キー番号: ' + ${indexForm.id}" />
+    
     <a href="/input">Submit another message</a>
 </body>
 </html>
