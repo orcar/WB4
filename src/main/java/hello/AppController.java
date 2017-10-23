@@ -1,6 +1,10 @@
 package hello;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import hello.service.HelloService;
+import hello.repository.*;
 
 import javax.servlet.http.HttpSession;
 
@@ -25,6 +29,8 @@ public class AppController {
 	private HttpSession session;
 	@Autowired
 	private HelloService helloService;
+	@Autowired
+	private HelloRepository helloRepository;
 
 	@GetMapping("/input")
 	public String inputForm(Model model) {
@@ -37,25 +43,29 @@ public class AppController {
 	}
 	
 	@GetMapping("/Muneharu")
-	public String saerchByKeyNum(Model model, @RequestParam("Key") int Key) {
+	public String saerchByKeyNum(Model model, @RequestParam("Key") Integer Key) {
 		
-		System.out.println(Key);
-		System.out.println(model);
+		System.out.println("Key :" + Key);
+		System.out.println("model :" + model);
 		IndexForm indexForm = new IndexForm();
+		Map<Integer, IndexForm> map = new HashMap<>();
 		
-		model.addAttribute("indexForm", indexForm);
-		/*SearchKeyNum searchKeyNum = new searc();
-		
-		model.addAttribute("indexForm", indexForm);*/
-
-		return "/result";
+		if (Key != null) {
+			indexForm = helloService.returnData(Key);
+			model.addAttribute("indexForm", indexForm);
+			return "/result";
+		} else { 
+			map = helloRepository.ReturnMapData();
+			model.addAttribute("map", map);
+			return "/result2";
+		}	
 	}
 	
 
 	@PostMapping("/input")
 	public String formSubmit(@ModelAttribute IndexForm indexForm) {
 
-		// number*2 Sessison setting
+		// number*2 Session setting
 		int sessionNumber = indexForm.getNumber();
 		int sessionNumber2 = sessionNumber * 2;
 		indexForm.setNumber(sessionNumber2);

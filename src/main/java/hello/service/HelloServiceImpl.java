@@ -1,6 +1,7 @@
 package hello.service;
 
 import java.util.Date;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -42,4 +43,13 @@ public class HelloServiceImpl implements HelloService {
 
 	}
 
+	public IndexForm returnData(Integer key) {
+		
+		Map<Integer, IndexForm> map = helloRepository.ReturnMapData();
+		IndexForm indexForm = map.get(key);
+		System.out.println(indexForm);
+		return indexForm;
+	}
+	
+	
 }

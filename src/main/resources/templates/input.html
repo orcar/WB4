@@ -10,36 +10,46 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<h1>
-		<span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
-		Form <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
-	</h1>
-	<form action="#" th:action="@{/input}" th:object="${indexForm}"
-		method="post">
-		<p>
-			数字: <input type="text" th:field="*{number}" /> 動物： <input
-				type="text" th:field="*{animal}" /> 国名： <input type="text"
-				th:field="*{nation}" />
-		</p>
-		<p>
-			<input type="submit" value="Submit"  />
-		</p>
-	</form>
-	<form action="#" th:action="@{/Muneharu}"  method="get">
-		<p>
-			履歴：　<input type="number" name="Key" />
-		</p>
-		<p>
-			<input type="submit" value="検索" />
-		</p>
-	</form>
-	<p th:text="'数字: ' + ${indexForm.number}" />
-	<div id="ajax_data">
-		<input type="button" id="ajax_btn" value="Ajax通信テスト" /><br /> 出力：<span
-			id="output_data"></span>
-	</div>
+	<div class="container">
+		<div class="panel panel-primary">
+			<div class="panel-heading">Http通信</div>
+			<div class="panel-body">
+				<form action="#" th:action="@{/input}" th:object="${indexForm}"
+					method="post">
+					<p>
+						数字: <input type="text" th:field="*{number}" /> 動物： <input
+							type="text" th:field="*{animal}" /> 国名： <input type="text"
+							th:field="*{nation}" />
+					</p>
+					<p>
+						<input type="submit" value="Submit" />
+					</p>
+				</form>
+				<form action="#" th:action="@{/Muneharu}" method="get">
+					<p>
+						履歴： <input type="number" name="Key" />
+					</p>
+					<p>
+						<input type="submit" value="検索" />
+					</p>
+				</form>
+				<p th:text="'数字: ' + ${indexForm.number}" />
+			</div>
+		</div>
 
-	<script src="/getJson.js" th:src="@{/getJson.js}"></script>
+		<div class="panel panel-danger">
+			<div class="panel-heading">Ajax</div>
+			<div class="panel-body">
+				<div id="ajax_data">
+					<input type="button" id="ajax_btn" value="Ajax通信テスト" /><br /> 出力：<span
+						id="output_data"></span>
+				</div>
+
+				<script src="/getJson.js" th:src="@{/getJson.js}"></script>
+
+			</div>
+		</div>
+	</div>
 
 </body>
 </html>
