@@ -3,16 +3,21 @@
 <head>
 <title>Getting Started: Handling Form Submission</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 </head>
 <body>
-	<h1>Result</h1>
-	<p th:text="'データ受取日時: ' + ${indexForm.receivedtime}" />
-	<p th:text="'キー番号: ' + ${indexForm.id}" />
-	<p th:text="'数字: ' + ${indexForm.number}" />
-	<p th:text="'動物: ' + ${indexForm.animal}" />
-	<p th:text="'国名: ' + ${indexForm.nation}" />
-
-
-	<a href="/input">Submit another message</a>
+	<div class="container">
+		<h1>Result</h1>
+		<ul class="list-group">
+			<li class="list-group-item"
+				th:text="'データ受取日時: ' + ${indexForm.receivedtime}" />
+			<li class="list-group-item" th:text="'キー番号: ' + ${indexForm.id}" />
+			<li class="list-group-item" th:text="'数字: ' + ${indexForm.number}" />
+			<li class="list-group-item" th:text="'動物: ' + ${indexForm.animal}" />
+			<li class="list-group-item" th:text="'国名: ' + ${indexForm.nation}" />
+		</ul>
+		<a href="/input">Submit another message</a>
+	</div>
 </body>
 </html>

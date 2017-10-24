@@ -3,15 +3,20 @@
 <head>
 <title>Getting Started: Handling Form Submission</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 </head>
 <body>
-	<h1>Result</h1>
-	<tr th:each="entry : ${map}">
-		<td th:text="${entry.key}">key</td>
-		<td th:text="${entry.value}">value</td>
-	<br/>
-	</tr>
-	
-	<a href="/input">Submit another message</a>
+	<div class="container">
+		<h1>Result2</h1>
+		<table class="table">
+			<tr th:each="entry : ${map}">
+				<td th:text="${entry.key}">key</td>
+				<td th:text="${entry.value}">value</td>
+			</tr>
+		</table>
+
+		<a href="/input">Submit another message</a>
+	</div>
 </body>
 </html>

@@ -8,6 +8,7 @@ import hello.repository.*;
 
 import javax.servlet.http.HttpSession;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,19 +32,29 @@ public class AppController {
 	private HelloService helloService;
 	@Autowired
 	private HelloRepository helloRepository;
+	
 
 	@GetMapping("/input")
 	public String inputForm(Model model) {
-
+		Integer number2 = (Integer) session.getAttribute("sessionNumber");
 		IndexForm indexForm = new IndexForm();
 		
 		model.addAttribute("indexForm", indexForm);
+		model.addAttribute("number2", number2);
 
 		return "/input";
 	}
 	
+	@GetMapping("/ajax")
+	public String ajaxForm(Model model) {
+		IndexForm indexForm = new IndexForm();
+		model.addAttribute("indexForm", indexForm);
+
+		return "/ajax";
+	}
+	
 	@GetMapping("/Muneharu")
-	public String saerchByKeyNum(Model model, @RequestParam("Key") Integer Key) {
+	public String searchByKeyNum(Model model, @RequestParam("Key") Integer Key) {
 		
 		System.out.println("Key :" + Key);
 		System.out.println("model :" + model);
@@ -66,18 +77,35 @@ public class AppController {
 	public String formSubmit(@ModelAttribute IndexForm indexForm) {
 
 		// number*2 Session setting
-		int sessionNumber = indexForm.getNumber();
-		int sessionNumber2 = sessionNumber * 2;
+		Integer sessionNumber = indexForm.getNumber();
+		if( sessionNumber != null) {
+		Integer sessionNumber2 = sessionNumber * 2;
 		indexForm.setNumber(sessionNumber2);
-		session.setAttribute("sessionNumber", sessionNumber2);
+		session.setAttribute("sessionNumber", sessionNumber2);}
 		
 		//set id & time in indexForm
 		helloService.setNumTime(indexForm);
 
-		return "/result";
+		return "/input";
 	}
 
-	// ajax for output json
+	
+	
+//	Ajax
+	@RequestMapping(value = "submit_ajax", method = RequestMethod.POST)
+	@ResponseBody
+	public IndexForm asyncFormSubmit(IndexForm indexForm) {
+		//set id & time in indexForm
+		helloService.setNumTime(indexForm);
+		return indexForm;
+	}
+	
+//	Ajax
+	
+	
+	
+
+//	Ajax for output json
 	@RequestMapping(value = "Hoge", method = RequestMethod.GET)
 	@ResponseBody
 	public String getJson() throws JsonProcessingException {

@@ -11,27 +11,29 @@
 
 </head>
 <body>
+	<script src="/result.js"></script>
 	<script src="/getJson.js"></script>
-
 	<div class="container">
 		<h1>
-			WebBasic created by iz-j <a href="/ajax">Go to ajax.html</a>
+			WebBasic created by iz-j <a href="/input">Go to input.html</a>
 		</h1>
-		<div class="panel panel-primary">
-			<div class="panel-heading">Http通信</div>
+		<div class="panel panel-danger">
+			<div class="panel-heading">Ajax</div>
 			<div class="panel-body">
-				<form action="#" th:action="@{/input}" th:object="${indexForm}"
-					method="post">
+				<div id="ajax_data">
+					<input type="button" id="ajax_btn" value="Ajax通信テスト" /><br /> 出力：<span
+						id="output_data"></span>
+				</div>
+				<form id="regform" method="post">
 					<p>
-						数字: <input type="text" th:field="*{number}" /> 動物： <input
-							type="text" th:field="*{animal}" /> 国名： <input type="text"
-							th:field="*{nation}" />
+						数字: <input type="text" id="aNumber" /> 動物： <input type="text"
+							id="aAnimal" /> 国名： <input type="text" id="aNation" />
 					</p>
 					<p>
-						<input type="submit" value="Submit" />
+						<input type="submit" value="Submit" id="submit_ajax" />
 					</p>
 				</form>
-				<form action="#" th:action="@{/Muneharu}" method="get">
+				<form id="search" method="get">
 					<p>
 						履歴： <input type="number" name="Key" />
 					</p>
@@ -39,7 +41,20 @@
 						<input type="submit" value="検索" />
 					</p>
 				</form>
-				<p th:text="'数字: ' + ${number2}" />
+
+				<br />
+
+				<h1>Result</h1>
+
+				<div id="result_ajax"></div>
+
+
+				<br />
+
+				<h1>Result2</h1>
+
+
+
 			</div>
 		</div>
 	</div>

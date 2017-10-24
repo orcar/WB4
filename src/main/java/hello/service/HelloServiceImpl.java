@@ -18,6 +18,7 @@ public class HelloServiceImpl implements HelloService {
 	private HttpSession session;
 	@Autowired
 	public HelloRepository helloRepository;
+	
 
 	@Override
 	public IndexForm setNumTime(IndexForm indexForm) {
@@ -49,7 +50,6 @@ public class HelloServiceImpl implements HelloService {
 		IndexForm indexForm = map.get(key);
 		System.out.println(indexForm);
 		return indexForm;
-	}
-	
+	}	
 	
 }

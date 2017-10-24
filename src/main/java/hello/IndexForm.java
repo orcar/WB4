@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class IndexForm{
 
-    private int number;
+    private Integer number;
 	private String animal;
     private String nation;
     
@@ -28,11 +28,11 @@ public class IndexForm{
 		this.id = id;
 	}
 
-	public int getNumber() {
+	public Integer getNumber() {
         return number;
     }
 
-    public void setNumber(int number) {
+    public void setNumber(Integer number) {
         this.number = number;
     }
     
