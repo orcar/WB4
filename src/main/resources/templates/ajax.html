@@ -12,6 +12,7 @@
 </head>
 <body>
 	<script src="/result.js"></script>
+	<script src="/searchKey.js"></script>
 	<script src="/getJson.js"></script>
 	<div class="container">
 		<h1>
@@ -24,36 +25,28 @@
 					<input type="button" id="ajax_btn" value="Ajax通信テスト" /><br /> 出力：<span
 						id="output_data"></span>
 				</div>
-				<form id="regform" method="post">
-					<p>
-						数字: <input type="text" id="aNumber" /> 動物： <input type="text"
-							id="aAnimal" /> 国名： <input type="text" id="aNation" />
-					</p>
-					<p>
-						<input type="submit" value="Submit" id="submit_ajax" />
-					</p>
-				</form>
-				<form id="search" method="get">
-					<p>
-						履歴： <input type="number" name="Key" />
-					</p>
-					<p>
-						<input type="submit" value="検索" />
-					</p>
-				</form>
+				<p>
+					数字: <input type="text" name="aNumber" /> 動物： <input type="text"
+						name="aAnimal" /> 国名： <input type="text" name="aNation" />
+				</p>
+				<p>
+					<input type="button" value="NotFormSubmit" id="submit_ajax" />
+				</p>
+				<p>
+					履歴： <input type="number" name="Key" />
+				</p>
+				<p>
+					<input type="button" value="検索" id="search_ajax" />
+				</p>
 
 				<br />
 
 				<h1>Result</h1>
-
 				<div id="result_ajax"></div>
-
-
 				<br />
 
 				<h1>Result2</h1>
-
-
+				<div id="search_result"></div>
 
 			</div>
 		</div>

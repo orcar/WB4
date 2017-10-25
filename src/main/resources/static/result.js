@@ -1,14 +1,28 @@
 $(function() {
-	// @/input ,when ajax submit click
+//	   @input ,when ajax submit click
 	$("#submit_ajax").click(function() {
-		// outputDataを空に初期化
+		var number = parseInt($("input[name='aNumber']").val(), 10);
+		var animal = $("input[name='aAnimal']").val();
+		var nation = $("input[name='aNation']").val();
+		var myValue = {
+			"number" : number,
+			"animal" : animal,
+			"nation" : nation
+		};
+//		alert(myValue);
+
 		$.ajax({
+			headers : {
+				'Accept' : 'application/json',
+				'Content-Type' : 'application/json'
+			},
 			type : "POST",
 			url : "submit_ajax",
-			data : params,
+			data : JSON.stringify(myValue),
+			dataType : "json",
 			success : function(data) {
 				console.log(data);
-				$("#result_ajax").text(data);
+				$("#result_ajax").text(JSON.stringify(data));
 			},
 			error : function(XMLHttpRequest, textStatus, errorThrown) {
 				alert("error:" + XMLHttpRequest);
@@ -17,4 +31,5 @@ $(function() {
 			}
 		});
 	});
+	
 });
