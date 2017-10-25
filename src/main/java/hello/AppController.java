@@ -101,14 +101,20 @@ public class AppController {
 	// Ajax
 	@RequestMapping(value = "/search_ajax", method = RequestMethod.GET)
 	@ResponseBody
-	public String ajaxSearchByKeyNum() throws JsonProcessingException {
+	public String ajaxSearchByKeyNum(@RequestParam("Key") Integer Key)
+			throws JsonProcessingException {
 
-		Map<Integer, IndexForm> map = new HashMap<>();
 		ObjectMapper mapper = new ObjectMapper();
 
-		map = helloRepository.ReturnMapData();
-		String json = mapper.writeValueAsString(map);
-		return json;
+		if (Key != null) {
+			IndexForm indexForm = helloService.returnData(Key);
+			String json = mapper.writeValueAsString(indexForm);
+			return json;
+		} else {
+			Map<Integer, IndexForm> map = helloRepository.ReturnMapData();
+			String json = mapper.writeValueAsString(map);
+			return json;
+		}
 	}
 
 	// Ajax for output json

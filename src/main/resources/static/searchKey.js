@@ -4,17 +4,13 @@ $(function() {
 		$.ajax({
 			type : "GET",
 			url : "/search_ajax",
-
+			data : {
+				Key : Key
+			},
 			success : function(data) {
 				console.log(data);
-				var jsonObj = JSON.parse(data);
-				if (Key == "") {
-					$("#search_result").text(data);
-				} else {
-					var sJsonObj = JSON.stringify(jsonObj[Key])
-					$("#search_result").text(sJsonObj);
-				}
-				
+				$("#search_result").text(data);
+
 			},
 			error : function(XMLHttpRequest, textStatus, errorThrown) {
 				alert("error:" + XMLHttpRequest);
