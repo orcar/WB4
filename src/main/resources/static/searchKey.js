@@ -3,7 +3,7 @@ $(function() {
 		var Key = $("input[name='Key']").val();
 		$.ajax({
 			type : "GET",
-			url : "/search_ajax",
+			url : "search_ajax",
 			data : {
 				Key : Key
 			},

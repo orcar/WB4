@@ -15,12 +15,12 @@
 
 	<div class="container">
 		<h1>
-			WebBasic created by iz-j <a href="/ajax">Go to ajax.html</a>
+			WebBasic created by iz-j <a href="ajax">Go to ajax.html</a>
 		</h1>
 		<div class="panel panel-primary">
 			<div class="panel-heading">Http通信</div>
 			<div class="panel-body">
-				<form action="#" th:action="@{/input}" th:object="${indexForm}"
+				<form action="#" th:action="@{input}" th:object="${indexForm}"
 					method="post">
 					<p>
 						数字: <input type="text" th:field="*{number}" /> 動物： <input
@@ -31,7 +31,7 @@
 						<input type="submit" value="Submit" />
 					</p>
 				</form>
-				<form action="#" th:action="@{/Muneharu}" method="get">
+				<form action="#" th:action="@{Muneharu}" method="get">
 					<p>
 						履歴： <input type="number" name="Key" />
 					</p>

@@ -1,10 +1,10 @@
 package hello;
 
+import hello.repository.HelloRepository;
+import hello.service.HelloService;
+
 import java.util.HashMap;
 import java.util.Map;
-
-import hello.service.HelloService;
-import hello.repository.*;
 
 import javax.servlet.http.HttpSession;
 
@@ -33,7 +33,18 @@ public class AppController {
 	@Autowired
 	private HelloRepository helloRepository;
 
-	@GetMapping("/input")
+	@GetMapping("")
+	public String index(Model model) {
+		Integer number2 = (Integer) session.getAttribute("sessionNumber");
+		IndexForm indexForm = new IndexForm();
+
+		model.addAttribute("indexForm", indexForm);
+		model.addAttribute("number2", number2);
+
+		return "index";
+	}
+
+	@GetMapping("index")
 	public String inputForm(Model model) {
 		Integer number2 = (Integer) session.getAttribute("sessionNumber");
 		IndexForm indexForm = new IndexForm();
@@ -41,18 +52,18 @@ public class AppController {
 		model.addAttribute("indexForm", indexForm);
 		model.addAttribute("number2", number2);
 
-		return "/input";
+		return "index";
 	}
 
-	@GetMapping("/ajax")
+	@GetMapping("ajax")
 	public String ajaxForm(Model model) {
 		IndexForm indexForm = new IndexForm();
 		model.addAttribute("indexForm", indexForm);
 
-		return "/ajax";
+		return "ajax";
 	}
 
-	@GetMapping("/Muneharu")
+	@GetMapping("Muneharu")
 	public String searchByKeyNum(Model model, @RequestParam("Key") Integer Key) {
 
 		System.out.println("Key :" + Key);
@@ -63,15 +74,15 @@ public class AppController {
 		if (Key != null) {
 			indexForm = helloService.returnData(Key);
 			model.addAttribute("indexForm", indexForm);
-			return "/result";
+			return "result";
 		} else {
 			map = helloRepository.ReturnMapData();
 			model.addAttribute("map", map);
-			return "/result2";
+			return "result2";
 		}
 	}
 
-	@PostMapping("/input")
+	@PostMapping("input")
 	public String formSubmit(@ModelAttribute IndexForm indexForm) {
 
 		// number*2 Session setting
@@ -85,11 +96,11 @@ public class AppController {
 		// set id & time in indexForm
 		helloService.setNumTime(indexForm);
 
-		return "/result";
+		return "result";
 	}
 
 	// Ajax
-	@RequestMapping(value = "/submit_ajax", method = RequestMethod.POST)
+	@RequestMapping(value = "submit_ajax", method = RequestMethod.POST)
 	@ResponseBody
 	public IndexForm asyncFormSubmit(@RequestBody IndexForm indexForm) {
 		System.out.println(indexForm);
@@ -99,7 +110,7 @@ public class AppController {
 	}
 
 	// Ajax
-	@RequestMapping(value = "/search_ajax", method = RequestMethod.GET)
+	@RequestMapping(value = "search_ajax", method = RequestMethod.GET)
 	@ResponseBody
 	public String ajaxSearchByKeyNum(@RequestParam("Key") Integer Key)
 			throws JsonProcessingException {

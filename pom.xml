@@ -4,7 +4,7 @@
 	<groupId>Mune</groupId>
 	<artifactId>WebBasic</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 
 	<name>WebBasic</name>
 	<url>http://maven.apache.org</url>
@@ -47,4 +47,26 @@
 			</plugin>
 		</plugins>
 	</build>
+	<profiles>
+        <profile>
+            <id>jar</id>
+            <properties>
+                <packaging.type>jar</packaging.type>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-maven-plugin</artifactId>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>war</id>
+            <properties>
+                <packaging.type>war</packaging.type>
+            </properties>
+        </profile>
+    </profiles>
 </project>
